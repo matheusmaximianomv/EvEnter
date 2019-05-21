@@ -1,11 +1,11 @@
 /* Importando os módulos */
-const express = require('express'); 
-const handlebars = require('express-handlebars');
-const path = require('path');
-const requireDir = require('require-dir');
-const session = require('express-session');
-const flash = require('connect-flash');
-const passport = require('passport');
+const express = require('express');  // Framework Minimalista baseado em rotas para o desenvolvimento da aplicação
+const handlebars = require('express-handlebars'); // Engine para renderização das telas
+const path = require('path'); // Pacote para resolução de problemas de enderaçamento de arquivos
+const requireDir = require('require-dir'); // Pacote para importação de todos os models
+const session = require('express-session'); // Pacote de controle de sessão de usuários
+const flash = require('connect-flash'); // Pacote para transmissão de mensagens de para vários arquivos das mensagens 
+const passport = require('passport'); // Pacote para resolução de tipo de acessos e facilitador na utilização do controle de sessões
 
 /* Inicializando os módulos / Instanciando Arquivos */
 const app = express();
@@ -31,7 +31,25 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, "public")));
 
 /* Configuração de Sessões */
+app.use(session({
+    secret : "Nossa Chave de Acesso Aqui",
+    resave : true,
+    saveUninitialized : true,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
 /* Configurando Middlewares Para Criação de Variáveis Globais */
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    res.locals.user = req.user || null;
+    next();
+});
 
 /* Rotas */
 app.use('/', require('./routes/index'));
