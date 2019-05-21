@@ -4,11 +4,13 @@ const handlebars = require('express-handlebars'); // Engine para renderização 
 const path = require('path'); // Pacote para resolução de problemas de enderaçamento de arquivos
 const requireDir = require('require-dir'); // Pacote para importação de todos os models
 const session = require('express-session'); // Pacote de controle de sessão de usuários
-const flash = require('connect-flash'); // Pacote para transmissão de mensagens de para vários arquivos das mensagens 
+const flash = require('connect-flash'); // Pacote para transmissão de mensagens entre arquivos. 
 const passport = require('passport'); // Pacote para resolução de tipo de acessos e facilitador na utilização do controle de sessões
 
 /* Inicializando os módulos / Instanciando Arquivos */
-const app = express();
+const app = express(); // Iniciando a Aplicação
+
+requireDir('./app/models'); // Importando os módulos
 
 /* Definindo os tipos de requisições */
 app.use(express.json({
