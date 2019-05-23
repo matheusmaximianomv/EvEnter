@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon app.js",
-    "start" : "node app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [
     "eventos",
@@ -22,12 +22,17 @@
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.1",
+    "fs": "0.0.1-security",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "require-dir": "^1.2.0"
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.2",
+    "require-dir": "^1.2.0",
+    "sequelize": "^5.8.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    "sequelize-cli": "^5.4.0"
   }
 }
