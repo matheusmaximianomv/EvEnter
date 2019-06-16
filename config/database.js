@@ -1,6 +1,6 @@
 module.exports = {
   dialect : "postgres",
-  port : 5432,
+  port : 0000,
   host : "",
   schema : "",
   database : "",

@@ -1,35 +1,25 @@
-/* Exemplo de Migration */
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Events', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      name: {
-        allowNull: false,
-        type: DataTypes.STRING
-      },
-      genre : {
+      id_user : {
         allowNull : false,
-        type : DataTypes.STRING
+        type : DataTypes.INTEGER
+      },
+      id_category : {
+        allowNull : false,
+        type : DataTypes.INTEGER
+      },
+      id_uf : {
+        allowNull : false,
+        type : DataTypes.INTEGER
       },
       street : {
-        allowNull : false,
-        type : DataTypes.STRING
-      },
-      houseNumber : {
         allowNull : false,
         type : DataTypes.STRING
       },
@@ -41,18 +31,32 @@ module.exports = {
         allowNull : false,
         type : DataTypes.STRING
       },
-      city : {
-        allowNull : false,
-        type : DataTypes.STRING 
-      },
       complement : {
         allowNull : false,
         type : DataTypes.STRING
       },
-      // Chave Estrangeira
-      id_uf : {
+      city : {
         allowNull : false,
-        type : DataTypes.INTEGER
+        type : DataTypes.STRING
+      },
+      private : {
+        allowNull : false,
+        type : DataTypes.BOOLEAN
+      },
+      accessCode : {
+        type : DataTypes.STRING
+      },
+      name : {
+        allowNull : false,
+        type : DataTypes.STRING
+      },
+      description : {
+        allowNull : false,
+        type : DataTypes.STRING
+      },
+      date : {
+        allowNull: false,
+        type: DataTypes.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -66,6 +70,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('Users', { schema : 'web_poo' } );
+    return queryInterface.dropTable('Events', { schema : 'web_poo' } );
   }
 };
