@@ -14,6 +14,21 @@ module.exports = {
     }
   },
 
+  //Listar apenas uma categoria
+  async show(req, res) {
+    try {
+      const categorie = await Categorie.findOne({
+        where: { id: req.params.id }
+      });
+      return res.send({ categorie });
+    } catch (error) {
+      return res.send({
+        error: "Erro ",
+        description: "Não foi possivel listar a categoria"
+      });
+    }
+  },
+
   //Cadastrar categoria
   async create(req, res) {
     const { name } = req.body;
