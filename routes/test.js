@@ -12,5 +12,6 @@ router.post("/user/delete/:email", UserController.delete);
 const CategorieController = require("./../app/controllers/CategorieController");
 router.post("/categorie/create", CategorieController.create);
 router.post("/categorie/update/:id", CategorieController.update);
+router.post("/categorie/delete/:id", CategorieController.delete);
 
 module.exports = router;
