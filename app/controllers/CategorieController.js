@@ -55,13 +55,19 @@ module.exports = {
     }
   },
 
-  delete(req, res) {
+  async delete(req, res) {
     try {
-      const categorie = await Categorie.destroy({where : {id : req.params.id}});
-      return res.send({categorie});
-  } catch (err) {
+      const categorie = await Categorie.destroy({
+        where: { id: req.params.id }
+      });
+      return res.send({ categorie });
+    } catch (err) {
       console.log(err);
-      return res.send({ error: 'Erro ao Deletar', description: 'Erro no Servidor', err });
-  }
+      return res.send({
+        error: "Erro ao Deletar",
+        description: "Erro no Servidor",
+        err
+      });
+    }
   }
 };
