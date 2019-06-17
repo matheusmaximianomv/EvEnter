@@ -58,12 +58,18 @@ module.exports = {
             }, { where : {id : req.params.id }});
             return res.send({ user });
         } catch (err) {
-            return res.send({ error: 'Erro ao Atualizar', description: 'Erro no Servidor : 3', err });
+            return res.send({ error: 'Erro ao Atualizar', description: 'Erro no Servidor', err });
         }
     },
     // Deleta um usuário
     async delete(req, res) {
-
+        try {
+            const user = await User.destroy({where : {id : req.params.id}});
+            return res.send({user});
+        } catch (err) {
+            console.log(err);
+            return res.send({ error: 'Erro ao Deletar', description: 'Erro no Servidor', err });
+        }
     }
 
 }
