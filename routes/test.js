@@ -12,6 +12,7 @@ router.post("/user/delete/:email", UserController.delete);
 
 /* Controller de Categoria */
 const CategorieController = require("./../app/controllers/CategorieController");
+router.get("/categorie/all", CategorieController.index);
 router.post("/categorie/create", CategorieController.create);
 router.post("/categorie/update/:id", CategorieController.update);
 router.post("/categorie/delete/:id", CategorieController.delete);

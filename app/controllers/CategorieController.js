@@ -1,6 +1,19 @@
 const { Categorie } = require("../models");
 
 module.exports = {
+  //Listar todas categorias
+  async index(req, res) {
+    try {
+      const categorie = await Categorie.findAll();
+      return res.send({ categorie });
+    } catch (error) {
+      return res.send({
+        error: "Erro",
+        description: "Não foi possível listar as categorias"
+      });
+    }
+  },
+
   //Cadastrar categoria
   async create(req, res) {
     const { name } = req.body;
@@ -56,6 +69,7 @@ module.exports = {
   },
 
   async delete(req, res) {
+    //Deletar categoria
     try {
       const categorie = await Categorie.destroy({
         where: { id: req.params.id }
