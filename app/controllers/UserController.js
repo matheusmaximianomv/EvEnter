@@ -55,15 +55,21 @@ module.exports = {
         try {
             const user = await User.update({
                 email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
-            }, { where : {id : req.params.id }});
+            }, { where : {email : req.params.email }});
             return res.send({ user });
         } catch (err) {
-            return res.send({ error: 'Erro ao Atualizar', description: 'Erro no Servidor : 3', err });
+            return res.send({ error: 'Erro ao Atualizar', description: 'Erro no Servidor', err });
         }
     },
     // Deleta um usuário
     async delete(req, res) {
-
+        try {
+            const user = await User.destroy({where : {email : req.params.email}});
+            return res.send({user});
+        } catch (err) {
+            console.log(err);
+            return res.send({ error: 'Erro ao Deletar', description: 'Erro no Servidor', err });
+        }
     }
 
 }
