@@ -10,5 +10,6 @@ router.post("/user/update/:id", UserController.update);
 /* Controller de Categoria */
 const CategorieController = require("./../app/controllers/CategorieController");
 router.post("/categorie/create", CategorieController.create);
+router.post("/categorie/update/:id", CategorieController.update);
 
 module.exports = router;
