@@ -53,18 +53,14 @@ module.exports = {
     // Atualiza os dados do usuário
     async update(req, res) {
 
-        const { email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf } = req.body;
+        const { name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf } = req.body;
 
-        if (!email || !name || !genre || !street || !houseNumber || !postalCode || !neighborhood || !city || !complement || !id_uf)
+        if ( !name || !genre || !street || !houseNumber || !postalCode || !neighborhood || !city || !complement || !id_uf)
             return res.send({ error: 'Erro ao Atualizar', description: 'Falha na Atualização' });
-
-        updateUser = {
-            email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
-        }
 
         try {
             const user = await User.update({
-                email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
+                name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
             }, { where : {email : req.params.email }});
             return res.send({ user });
         } catch (err) {
