@@ -1,4 +1,4 @@
-const { User, Event, Item, Phone, UF } = require('./../models');
+const { User } = require('./../models');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -43,24 +43,22 @@ module.exports = {
     // Atualiza os dados do usuário
     async update(req, res) {
 
-        const { email, password, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf } = req.body;
-        const { id } = req.params.id;
+        const { email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf } = req.body;
 
-        if (!email || !password || !name || !genre || !street || !houseNumber || !postalCode || !neighborhood || !city || !complement || !id_uf)
+        if (!email || !name || !genre || !street || !houseNumber || !postalCode || !neighborhood || !city || !complement || !id_uf)
             return res.send({ error: 'Erro ao Atualizar', description: 'Falha na Atualização' });
 
         updateUser = {
-            email, password, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
+            email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
         }
 
-        //console.log(updateUser);
-
         try {
-            const user = await User.findOne( { where: { id: req.params.id } });
+            const user = await User.update({
+                email, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, updatedAt: Date.now
+            }, { where : {id : req.params.id }});
             return res.send({ user });
         } catch (err) {
-            console.log(err);
-            return res.send({ error: 'Erro ao Cadastrar', description: 'Erro no Servidor : 3', err });
+            return res.send({ error: 'Erro ao Atualizar', description: 'Erro no Servidor : 3', err });
         }
     },
     // Deleta um usuário
