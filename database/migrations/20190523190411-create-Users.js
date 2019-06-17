@@ -49,7 +49,11 @@ module.exports = {
         allowNull : false,
         type : DataTypes.STRING
       },
-      // Chave Estrangeira
+      isAdmin : {
+        allowNull : false,
+        type : DataTypes.STRING,
+        defaultValue: false,
+      },
       id_uf : {
         allowNull : false,
         type : DataTypes.INTEGER

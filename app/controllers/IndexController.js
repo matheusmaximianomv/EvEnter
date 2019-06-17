@@ -8,18 +8,18 @@ module.exports = {
   },
 
   cadastro(req, res) {
-    res.render(path.resolve("./app/views/cadastro"));
+    return res.render(path.resolve("./app/views/cadastro"));
   },
 
   categorias(req, res) {
     //Pesquisa no banco pelo slug de categoria
     const eventosCategoria = [];
-    res.render(path.resolve("./app/views/categorias"), { eventosCategoria });
+    return res.render(path.resolve("./app/views/categorias"), { eventosCategoria });
   },
 
   categoriasEvento(req, res) {
     //Pesquisa no banco de evento por slug do evento
     const evento = [];
-    res.render(path.resolve(".app/views/categorias/evento"), { evento });
+    return res.render(path.resolve(".app/views/categorias/evento"), { evento });
   }
 };

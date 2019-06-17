@@ -109,7 +109,7 @@ module.exports = {
       uf: 'TO',
       description: 'Tocantins',
     }
-  ], {schema : 'web_poo'}),
+  ], {schema : 'web_poo', tableName: 'UFs'}),
 
-  down: (queryInterface) => queryInterface.bulkDelete('UFs', null, {schema : 'web_poo'}),
+  down: (queryInterface) => queryInterface.bulkDelete('UFs', null, {schema : 'web_poo', tableName: 'UFs'}),
 };

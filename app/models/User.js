@@ -20,28 +20,29 @@ module.exports = (sequelize, DataTypes) => {
             as: 'UFs'
         });
 
+        
+        User.hasMany(models.Phone,{
+            foreignKey : 'id_user',
+            as: 'Phones'
+        });
+        
+        User.hasMany(models.Event,{
+            foreignKey : 'id_user',
+            as: 'Events'
+        });
+        
+        User.hasMany(models.Item,{
+            foreignKey : 'id_user',
+            as: 'Items'
+        });
+        
         /*User.belongsToMany(models.Event,{
             through: 'Users_Event',
             as: 'Events',
             foreignKey: 'id_user',
         });*/
-
-        User.hasMany(models.Phone,{
-            foreignKey : 'id_user',
-            as: 'Phones'
-        });
-
-        User.hasMany(models.Event,{
-            foreignKey : 'id_user',
-            as: 'Events'
-        });
-
-        User.hasMany(models.Item,{
-            foreignKey : 'id_user',
-            as: 'Items'
-        });
     }
-
+    
 
     return User;
 }

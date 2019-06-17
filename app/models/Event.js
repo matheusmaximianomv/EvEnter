@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
         neighborhood: DataTypes.STRING,
         complement: DataTypes.STRING,
         city: DataTypes.STRING,
-        complement: DataTypes.STRING,
         id_user: DataTypes.INTEGER,
         id_category: DataTypes.INTEGER,
         id_uf: DataTypes.INTEGER,

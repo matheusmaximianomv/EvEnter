@@ -20,12 +20,6 @@ app.use(express.urlencoded({
     extended : true
 }));
 
-/* Testando o Sequelize */
-/* Toda vez que for fazer uma table, lembrar de fazer o migrate no plural e o model no singular */
-//const { User } = require('./app/models');
-//User.create({name : "Matheus", email : "matheus@email.com", password: "123456789"});
-//User.create({name : "anselmo", email : "anselmo@email.com", password: "123456789"});
-
 /* Configurando a Engine de Renderização */
 app.engine('handlebars', handlebars({
     layoutsDir : path.resolve('app\\views\\layouts'),
@@ -60,8 +54,9 @@ app.use((req, res, next) => {
 });
 
 /* Rotas */
-app.use('/', require('./routes/index'));
-
+//app.use('/', require('./routes/index'));
+app.use('/test', require('./routes/test'));
+    
 /* Definindo a Porta do Servidor */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
