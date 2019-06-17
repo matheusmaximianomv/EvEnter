@@ -8,7 +8,6 @@ module.exports = {
         type: DataTypes.INTEGER,
       },
       id_user : {
-        allowNull : false,
         type : DataTypes.INTEGER
       },
       id_event : {
