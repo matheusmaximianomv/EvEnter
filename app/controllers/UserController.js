@@ -5,11 +5,21 @@ module.exports = {
 
     // Listar todos os usuários
     async index(req, res) {
-
+        try {
+            const users = await User.findAll();
+            return res.send({users});
+        } catch (error) {
+            return res.send({ error : "Erro ", description : 'Não foi possivel listar todos os usuários'});
+        }
     },
     // Listar apenas um usuário
     async show(req, res) {
-
+        try {
+            const user = await User.findOne({where : {email : req.params.email}});
+            return res.send({user});
+        } catch (error) {
+            return res.send({ error : "Erro ", description : 'Não foi possivel listar o usuário'});
+        }
     },
     // Cria um usuário
     async create(req, res) {
