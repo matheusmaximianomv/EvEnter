@@ -4,7 +4,11 @@ const router = express.Router();
 
 /* Controller de Index */
 const UserController = require("./../app/controllers/UserController");
-router.post('/user/create', UserController.create);
-router.post('/user/update/:id', UserController.update);
+router.post("/user/create", UserController.create);
+router.post("/user/update/:id", UserController.update);
+
+/* Controller de Categoria */
+const CategorieController = require("./../app/controllers/CategorieController");
+router.post("/categorie/create", CategorieController.create);
 
 module.exports = router;
