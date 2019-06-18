@@ -1,4 +1,4 @@
-const { User } = require('./../models');
+const { User, Phone } = require('./../models');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -16,14 +16,19 @@ module.exports = {
     async show(req, res) {
         try {
             const user = await User.findOne({where : {email : req.params.email}});
-            return res.send({user});
+            try{
+                const phone = await Phone.findAll({where : {id_user : user.id}});
+                return res.send({user,phone_user:phone});
+            }catch(err){
+                return res.send({ error : "Erro ", description : 'Não foi possivel listar o usuário'});
+            }
         } catch (error) {
             return res.send({ error : "Erro ", description : 'Não foi possivel listar o usuário'});
         }
     },
     // Cria um usuário
     async create(req, res) {
-        const { email, password, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf } = req.body;
+        const { email, password, name, genre, street, houseNumber, postalCode, neighborhood, city, complement, id_uf, phones } = req.body;
 
         if (!email || !password || !name || !genre || !street || !houseNumber || !postalCode || !neighborhood || !city || !complement || !id_uf)
             return res.send({ error: 'Erro ao Cadastrar', description: 'Falha no cadastro' });
@@ -41,7 +46,14 @@ module.exports = {
                 newUser.password = hash;
                 try {
                     const user = await User.create(newUser);
-                    return res.json(user);
+                    try {
+                        phones.map(async phone => {
+                            await Phone.create({phone, id_user : user.id});
+                        });
+                        return res.json({users});
+                    } catch (error) {
+                        return res.json({ error: 'Erro ao Cadastrar Telefone', description: 'Erro no Servidor', err });
+                    }
                 } catch (err) {
                     return res.json({ error: 'Erro ao Cadastrar', description: 'Erro no Servidor : 3', err });
                 }
@@ -71,6 +83,7 @@ module.exports = {
     async delete(req, res) {
         try {
             const user = await User.destroy({where : {email : req.params.email}});
+
             return res.send({user});
         } catch (err) {
             console.log(err);
