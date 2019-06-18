@@ -33,4 +33,10 @@ router.get("/item/all", ItemController.index);
 router.get("/item/show/:id", ItemController.show);
 router.post("/item/user/:email", ItemController.showByUser);
 
+/* Controller de Evento e Usuários */
+const EnterEventController = require('./../app/controllers/EnterEventController');
+router.post("/enter/event/register", EnterEventController.registerUserInEvent);
+router.post("/enter/event/unregister", EnterEventController.removeUserInEvent);
+router.post("/enter/event/associate", EnterEventController.assingItem);
+
 module.exports = router;
