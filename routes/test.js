@@ -19,7 +19,7 @@ router.post("/categorie/update/:id", CategorieController.update);
 router.post("/categorie/delete/:id", CategorieController.delete);
 
 /* Controller de Events */
-const EventController = require('./../app/controllers/EventController');
+const EventController = require("./../app/controllers/EventController");
 router.get("/event/all", EventController.index);
 router.get("/event/:id", EventController.showById);
 router.get("/event/user/:email", EventController.showByUser);
@@ -27,10 +27,10 @@ router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
 router.post("/event/delete/:id", EventController.delete);
 
-/* Controller de EnterEvent */
-const EnterEventController = require('./../app/controllers/EnterEventController');
-router.post("/enter/event/register", EnterEventController.registerUserInEvent);
-router.post("/enter/event/unregister", EnterEventController.removeUserInEvent);
-router.post("/enter/event/associate", EnterEventController.assingItem);
+/*Controller de Itens*/
+const ItemController = require("./../app/controllers/ItemController");
+router.get("/item/all", ItemController.index);
+router.get("/item/show/:id", ItemController.show);
+router.post("/item/user/:email", ItemController.showByUser);
 
 module.exports = router;
