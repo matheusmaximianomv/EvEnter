@@ -46,5 +46,24 @@ module.exports = {
         description: "Não foi possível listar o usuário."
       });
     }
+  },
+
+  async update(req, res) {
+    try {
+      const { name, description } = req.boby;
+
+      if (!name || !description)
+        return res.send({
+          error: "Erro ao Atualizar",
+          description: "Falha na atuazação."
+        });
+
+      updateItem = { name, description, updateAt: Date.now };
+
+      try {
+        const item = await Item.update({name, description, updateAt: Date.now}, {where : {id : req.params.id}})
+        return send({item})
+      }cat
+    } catch {}
   }
 };
