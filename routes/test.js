@@ -17,4 +17,9 @@ router.post("/categorie/create", CategorieController.create);
 router.post("/categorie/update/:id", CategorieController.update);
 router.post("/categorie/delete/:id", CategorieController.delete);
 
+/* Controller de Events */
+const EventController = require('./../app/controllers/EventController');
+router.post("/event/create", EventController.create);
+router.post("/event/update/:id", EventController.update);
+
 module.exports = router;
