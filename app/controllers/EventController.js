@@ -13,8 +13,15 @@ module.exports = {
 
     async showById(req, res) {
         try {
-            const event = await Event.findAll({where : {id : req.params.id}});
-            return res.send({event});
+            const event = await Event.findOne({where : {id : req.params.id}});
+            const items = await Item.findAll({where : {id_event : event.id}});
+            const ids_tag = await Events_Tag.findAll({where : {id_event : event.id}});
+            const tags = [];
+            for(value of ids_tag) {
+                const tag = await Tag.findOne({where : {id : value.id_tag}});
+                tags.push(tag);
+            }
+            return res.send({event, items, tags});
         } catch (err) {
             return res.send({ error : "Erro ", description : 'Não foi possivel listar o evento'});
         }
