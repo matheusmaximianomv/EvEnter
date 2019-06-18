@@ -101,7 +101,14 @@ module.exports = {
     async delete(req, res) {
         try {
             const status = await Event.destroy({where : {id : req.params.id}});
-            return res.send({status});
+            const statusItem = await Item.destroy({where : {id_event : req.params.id}});
+            const ids_tag = await Events_Tag.findAll({where : {id_event : req.params.id}});
+            const statusTag = [];
+            const status_event_tag = await Events_Tag.destroy({where : {id_event : req.params.id}});
+            for(value of ids_tag) {
+                statusTag[statusTag.length] = await Tag.destroy({where : {id : value.id_tag}});
+            }
+            return res.send({status, statusItem, status_event_tag, statusTag});
         } catch (err) {
             return res.send({ error: 'Erro ao Deletar', description: 'Erro no Servidor', err });
         }
