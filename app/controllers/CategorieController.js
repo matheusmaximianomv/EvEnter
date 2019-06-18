@@ -89,7 +89,6 @@ module.exports = {
       });
       return res.send({ categorie });
     } catch (err) {
-      console.log(err);
       return res.send({
         error: "Erro ao Deletar",
         description: "Erro no Servidor",

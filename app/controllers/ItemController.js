@@ -93,5 +93,17 @@ module.exports = {
         description: "Erro no Servidor"
       });
     }
+  },
+
+  async delete(req, res) {
+    try {
+      const item = await Item.destroy({ where: { id: req.params.id } });
+      return res.send({ item });
+    } catch (err) {
+      return res.send({
+        error: "Erro ao Deletar",
+        description: "Erro no Servidor"
+      });
+    }
   }
 };

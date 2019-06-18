@@ -27,13 +27,14 @@ router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
 router.post("/event/delete/:id", EventController.delete);
 
-/*Controller de Itens*/
+/* Controller de Itens */
 const ItemController = require("./../app/controllers/ItemController");
 router.get("/item/all", ItemController.index);
 router.get("/item/show/:id", ItemController.show);
 router.post("/item/user/:email", ItemController.showByUser);
 router.post("/item/update/:id", ItemController.update);
 router.post("/item/update/verified/:id", ItemController.updateByVerified);
+router.post("/item/delete/:id", ItemController.delete);
 
 /* Controller de Evento e Usuários */
 const EnterEventController = require("./../app/controllers/EnterEventController");
