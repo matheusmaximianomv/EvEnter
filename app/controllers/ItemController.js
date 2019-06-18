@@ -7,6 +7,7 @@ module.exports = {
       const item = await Item.findAll();
       return res.send({ item });
     } catch (error) {
+      console.log(error);
       return res.send({
         error: "Erro",
         description: "Não foi possível listar os itens"
@@ -49,21 +50,25 @@ module.exports = {
   },
 
   async update(req, res) {
+    const { name, description } = req.body;
+    console.log(name, description);
+    if (!name || !description)
+      return res.send({
+        error: "Erro ao Atualizar",
+        description: "Falha na atuazação."
+      });
+
     try {
-      const { name, description } = req.boby;
-
-      if (!name || !description)
-        return res.send({
-          error: "Erro ao Atualizar",
-          description: "Falha na atuazação."
-        });
-
-      updateItem = { name, description, updateAt: Date.now };
-
-      try {
-        const item = await Item.update({name, description, updateAt: Date.now}, {where : {id : req.params.id}})
-        return send({item})
-      }cat
-    } catch {}
+      const item = await Item.update(
+        { name, description, updateAt: Date.now() },
+        { where: { id: req.params.id } }
+      );
+      return res.send({ item });
+    } catch (err) {
+      return res.send({
+        error: "Erro ao Atualizar",
+        description: "Erro no Servidor"
+      });
+    }
   }
 };

@@ -63,8 +63,6 @@ module.exports = {
         description: "Falha na atualização"
       });
 
-    updateCategorie = { name, updateAt: Date.now };
-
     try {
       const categorie = await Categorie.update(
         {
