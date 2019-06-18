@@ -33,6 +33,7 @@ router.get("/item/all", ItemController.index);
 router.get("/item/show/:id", ItemController.show);
 router.post("/item/user/:email", ItemController.showByUser);
 router.post("/item/update/:id", ItemController.update);
+router.post("/item/update/verified/:id", ItemController.updateByVerified);
 
 /* Controller de Evento e Usuários */
 const EnterEventController = require("./../app/controllers/EnterEventController");

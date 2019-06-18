@@ -51,7 +51,7 @@ module.exports = {
 
   async update(req, res) {
     const { name, description } = req.body;
-    console.log(name, description);
+
     if (!name || !description)
       return res.send({
         error: "Erro ao Atualizar",
@@ -61,6 +61,29 @@ module.exports = {
     try {
       const item = await Item.update(
         { name, description, updateAt: Date.now() },
+        { where: { id: req.params.id } }
+      );
+      return res.send({ item });
+    } catch (err) {
+      return res.send({
+        error: "Erro ao Atualizar",
+        description: "Erro no Servidor"
+      });
+    }
+  },
+
+  async updateByVerified(req, res) {
+    const { verified } = req.body;
+
+    if (!verified)
+      return res.send({
+        error: "Erro ao Atualizar",
+        description: "Falha na atuazação."
+      });
+
+    try {
+      const item = await Item.update(
+        { verified, updateAt: Date.now() },
         { where: { id: req.params.id } }
       );
       return res.send({ item });
