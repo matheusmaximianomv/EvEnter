@@ -1,4 +1,4 @@
-const { User, Phone } = require('./../models');
+const { User, Phone, Users_Event, Item } = require('./../models');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -83,9 +83,12 @@ module.exports = {
     // Deleta um usuário
     async delete(req, res) {
         try {
-            const user = await User.destroy({where : {email : req.params.email}});
-
-            return res.send({user});
+            const user = await User.findOne({where : {email : req.params.email}});
+            const statusUser = await User.destroy({where : {id : user.id}});
+            const statusPhone = await Phone.destroy({where:{id_user : user.id}});
+            const statusUserEvent = await Users_Event.destroy({where:{id_user : user.id}});
+            const statusItem = await Item.update({id_user : null}, {where:{id_user : user.id}});
+            return res.send({user, statusUser, statusPhone, statusUserEvent, statusItem});
         } catch (err) {
             console.log(err);
             return res.send({ error: 'Erro ao Deletar', description: 'Erro no Servidor', err });
