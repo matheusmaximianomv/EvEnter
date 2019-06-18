@@ -19,12 +19,15 @@ router.post("/categorie/update/:id", CategorieController.update);
 router.post("/categorie/delete/:id", CategorieController.delete);
 
 /* Controller de Events */
-const EventController = require('./../app/controllers/EventController');
+const EventController = require("./../app/controllers/EventController");
 router.get("/event/all", EventController.index);
 router.get("/event/:id", EventController.showById);
 router.get("/event/user/:email", EventController.showByUser);
 router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
 router.post("/event/delete/:id", EventController.delete);
+
+const ItemController = require("./../app/controllers/ItemController");
+router.get("/item/all", ItemController.index);
 
 module.exports = router;
