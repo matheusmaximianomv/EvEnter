@@ -27,4 +27,10 @@ router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
 router.post("/event/delete/:id", EventController.delete);
 
+/* Controller de EnterEvent */
+const EnterEventController = require('./../app/controllers/EnterEventController');
+router.post("/enter/event/register", EnterEventController.registerUserInEvent);
+router.post("/enter/event/unregister", EnterEventController.removeUserInEvent);
+router.post("/enter/event/associate", EnterEventController.assingItem);
+
 module.exports = router;
