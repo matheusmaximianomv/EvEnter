@@ -19,7 +19,11 @@ router.post("/categorie/delete/:id", CategorieController.delete);
 
 /* Controller de Events */
 const EventController = require('./../app/controllers/EventController');
+router.get("/event/all", EventController.index);
+router.get("/event/:id", EventController.showById);
+router.get("/event/user/:email", EventController.showByUser);
 router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
+router.post("/event/delete/:id", EventController.delete);
 
 module.exports = router;
