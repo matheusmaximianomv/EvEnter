@@ -12,5 +12,18 @@ module.exports = {
         description: "Não foi possível listar os itens"
       });
     }
+  },
+
+  //Listar um item
+  async show(req, res) {
+    try {
+      const item = await Item.findOne({ where: { id: req.params.id } });
+      return res.send({ item });
+    } catch {
+      return res.send({
+        error: "Erro",
+        description: "Não foi possível listar o item"
+      });
+    }
   }
 };

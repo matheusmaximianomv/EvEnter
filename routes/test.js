@@ -27,7 +27,9 @@ router.post("/event/create", EventController.create);
 router.post("/event/update/:id", EventController.update);
 router.post("/event/delete/:id", EventController.delete);
 
+/*Controller de Itens*/
 const ItemController = require("./../app/controllers/ItemController");
 router.get("/item/all", ItemController.index);
+router.get("/item/show/:id", ItemController.show);
 
 module.exports = router;
