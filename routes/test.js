@@ -31,5 +31,6 @@ router.post("/event/delete/:id", EventController.delete);
 const ItemController = require("./../app/controllers/ItemController");
 router.get("/item/all", ItemController.index);
 router.get("/item/show/:id", ItemController.show);
+router.post("/item/user/:email", ItemController.showByUser);
 
 module.exports = router;

@@ -55,6 +55,7 @@ module.exports = {
                         return res.json({ error: 'Erro ao Cadastrar Telefone', description: 'Erro no Servidor', err });
                     }
                 } catch (err) {
+                    console.log(err)
                     return res.json({ error: 'Erro ao Cadastrar', description: 'Erro no Servidor : 3', err });
                 }
             });

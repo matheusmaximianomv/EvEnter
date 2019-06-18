@@ -1,4 +1,4 @@
-const { Item } = require("../models");
+const { Item, User } = require("../models");
 
 module.exports = {
   //Listar todos os itens
@@ -23,6 +23,27 @@ module.exports = {
       return res.send({
         error: "Erro",
         description: "Não foi possível listar o item"
+      });
+    }
+  },
+
+  //Listar itens de Usuário
+  async showByUser(req, res) {
+    try {
+      const user = await User.findOne({ where: { email: req.params.email } });
+      try {
+        const item = await Item.findAll({ where: { id_user: user.id } });
+        return res.send({ item });
+      } catch (err) {
+        return res.send({
+          error: "Erro ",
+          description: "Não foi possível listar o item do usuário"
+        });
+      }
+    } catch (err) {
+      return res.send({
+        error: "Erro ",
+        description: "Não foi possível listar o usuário."
       });
     }
   }
